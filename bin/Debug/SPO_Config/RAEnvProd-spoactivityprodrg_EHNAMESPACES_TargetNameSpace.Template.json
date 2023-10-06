@@ -1,0 +1,65 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "resources": [
+    {
+      "apiVersion": "2022-10-01-preview",
+      "location": "[parameters('LocationProp')]",
+      "name": "[parameters('TargetNameSpace')]",
+      "condition": true,
+      "properties": {
+        "disableLocalAuth": "[parameters('DisableLocalAuthProp')]",
+        "isAutoInflateEnabled": "[parameters('IsAutoInflateEnabledProp')]",
+        "kafkaEnabled": "[parameters('KafkaEnabledProp')]",
+        "maximumThroughputUnits": "[parameters('MaximumThroughputUnitsProp')]",
+        "minimumTlsVersion": "[parameters('MinimumTlsVersionProp')]",
+        "publicNetworkAccess": "[parameters('PublicNetworkAccessProp')]",
+        "zoneRedundant": "[parameters('ZoneRedundantProp')]"
+      },
+      "sku": {
+        "capacity": "[parameters('EventHubSkuCapacity')]",
+        "name": "[parameters('EventHubSkuName')]",
+        "tier": "[parameters('EventHubSkuTierProp')]"
+      },
+      "type": "Microsoft.EventHub/namespaces"
+    }
+  ],
+  "parameters": {
+    "LocationProp": {
+      "type": "string"
+    },
+    "TargetNameSpace": {
+      "type": "string"
+    },
+    "DisableLocalAuthProp": {
+      "type": "string"
+    },
+    "IsAutoInflateEnabledProp": {
+      "type": "string"
+    },
+    "KafkaEnabledProp": {
+      "type": "string"
+    },
+    "MaximumThroughputUnitsProp": {
+      "type": "string"
+    },
+    "MinimumTlsVersionProp": {
+      "type": "string"
+    },
+    "PublicNetworkAccessProp": {
+      "type": "string"
+    },
+    "ZoneRedundantProp": {
+      "type": "string"
+    },
+    "EventHubSkuCapacity": {
+      "type": "string"
+    },
+    "EventHubSkuName": {
+      "type": "string"
+    },
+    "EventHubSkuTierProp": {
+      "type": "string"
+    }
+  }
+}

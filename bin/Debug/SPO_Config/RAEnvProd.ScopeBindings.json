@@ -1,0 +1,72 @@
+﻿{
+  "$schema": "https://ev2schema.azure.net/schemas/2020-01-01/scopeBindings.json",
+  "contentVersion": "0.0.0.1",
+  "scopeBindings": [
+    {
+      "scopeTagName": "spoactivityprodrgEventHub",
+      "bindings": [
+        {
+          "find": "__TargetNameSpace__",
+          "replaceWith": "$serviceResourceDefinition(RAEnvProd-httpExt-BuildoutRG-HTTPEXT-sposigsconnectorBuildout).action(extension/sposigsconnectorBuildout).outputs(SPOActivityProdRGEventhub.TargetNameSpace)"
+        },
+        {
+          "find": "__EventHubConsumerGroupName__",
+          "replaceWith": "$serviceResourceDefinition(RAEnvProd-httpExt-BuildoutRG-HTTPEXT-sposigsconnectorBuildout).action(extension/sposigsconnectorBuildout).outputs(SPOActivityProdRGEventhub.TargetNameSpace)"
+        },
+        {
+          "find": "__EventNameSpaceAuthName__",
+          "replaceWith": "$serviceResourceDefinition(RAEnvProd-httpExt-BuildoutRG-HTTPEXT-sposigsconnectorBuildout).action(extension/sposigsconnectorBuildout).outputs(SPOActivityProdRGEventhub.TargetNameSpace)"
+        },
+        {
+          "find": "__EventHubName__",
+          "replaceWith": "$serviceResourceDefinition(RAEnvProd-httpExt-BuildoutRG-HTTPEXT-sposigsconnectorBuildout).action(extension/sposigsconnectorBuildout).outputs(SPOActivityProdRGEventhub.TargetNameSpace)"
+        },
+
+        {
+          "find": "__EventHubAuthName__",
+          "replaceWith": "$serviceResourceDefinition(RAEnvProd-httpExt-BuildoutRG-HTTPEXT-sposigsconnectorBuildout).action(extension/sposigsconnectorBuildout).outputs(SPOActivityProdRGEventhub.TargetNameSpace)"
+        },
+        {
+          "find": "__DisableLocalAuthProp__",
+          "replaceWith": "$serviceResourceDefinition(RAEnvProd-httpExt-BuildoutRG-HTTPEXT-sposigsconnectorBuildout).action(extension/sposigsconnectorBuildout).outputs(SPOActivityProdRGEventhub.DisableLocalAuthProp)"
+        },
+        {
+          "find": "__IsAutoInflateEnabledProp__",
+          "replaceWith": "$serviceResourceDefinition(RAEnvProd-httpExt-BuildoutRG-HTTPEXT-sposigsconnectorBuildout).action(extension/sposigsconnectorBuildout).outputs(SPOActivityProdRGEventhub.IsAutoInflateEnabledProp)"
+        },
+        {
+          "find": "__KafkaEnabledProp__",
+          "replaceWith": "$serviceResourceDefinition(RAEnvProd-httpExt-BuildoutRG-HTTPEXT-sposigsconnectorBuildout).action(extension/sposigsconnectorBuildout).outputs(SPOActivityProdRGEventhub.KafkaEnabledProp)"
+        },
+        {
+          "find": "__MaximumThroughputUnitsProp__",
+          "replaceWith": "$serviceResourceDefinition(RAEnvProd-httpExt-BuildoutRG-HTTPEXT-sposigsconnectorBuildout).action(extension/sposigsconnectorBuildout).outputs(SPOActivityProdRGEventhub.MaximumThroughputUnitsProp)"
+        },
+        {
+          "find": "__MinimumTlsVersionProp__",
+          "replaceWith": "$serviceResourceDefinition(RAEnvProd-httpExt-BuildoutRG-HTTPEXT-sposigsconnectorBuildout).action(extension/sposigsconnectorBuildout).outputs(SPOActivityProdRGEventhub.MinimumTlsVersionProp)"
+        },
+        {
+          "find": "__PublicNetworkAccessProp__",
+          "replaceWith": "$serviceResourceDefinition(RAEnvProd-httpExt-BuildoutRG-HTTPEXT-sposigsconnectorBuildout).action(extension/sposigsconnectorBuildout).outputs(SPOActivityProdRGEventhub.PublicNetworkAccessProp)"
+        },
+        {
+          "find": "__ZoneRedundantProp__",
+          "replaceWith": "$serviceResourceDefinition(RAEnvProd-httpExt-BuildoutRG-HTTPEXT-sposigsconnectorBuildout).action(extension/sposigsconnectorBuildout).outputs(SPOActivityProdRGEventhub.ZoneRedundantProp)"
+        },
+        {
+          "find": "__EventHubSkuCapacity__",
+          "replaceWith": "$serviceResourceDefinition(RAEnvProd-httpExt-BuildoutRG-HTTPEXT-sposigsconnectorBuildout).action(extension/sposigsconnectorBuildout).outputs(SPOActivityProdRGEventhub.EventHubSkuCapacity)"
+        },
+        {
+          "find": "__EventHubSkuName__",
+          "replaceWith": "$serviceResourceDefinition(RAEnvProd-httpExt-BuildoutRG-HTTPEXT-sposigsconnectorBuildout).action(extension/sposigsconnectorBuildout).outputs(SPOActivityProdRGEventhub.EventHubSkuName)"
+        },
+        {
+          "find": "__EventHubSkuTierProp__",
+          "replaceWith": "$serviceResourceDefinition(RAEnvProd-httpExt-BuildoutRG-HTTPEXT-sposigsconnectorBuildout).action(extension/sposigsconnectorBuildout).outputs(SPOActivityProdRGEventhub.EventHubSkuTierProp)"
+        }
+      ]
+    }
+  ]
+}

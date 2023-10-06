@@ -1,0 +1,51 @@
+{
+  "$schema": "http://schema.express.azure.com/schemas/2015-01-01-alpha/ServiceModel.json",
+  "contentVersion": "0.0.0.1",
+  "serviceMetadata": {
+    "serviceGroup": "PrivacyManagementService",
+    "environment": "ISR"
+  },
+  "serviceResourceGroupDefinitions": [
+    {
+      "name": "PrivacyOrchestratorResources",
+      "serviceResourceDefinitions": [
+        {
+          "name": "PrivacyCosmosDbDefinition",
+          "composedOf": {
+            "arm": {
+              "templatePath": "Templates\\PrivacyCosmosDb.Template.json"
+            }
+          }
+        },
+        {
+          "name": "DSRQueueDefinition",
+          "composedOf": {
+            "arm": {
+              "templatePath": "Templates\\DSRQueue.Template.json"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "ServiceResourceGroups": [
+    {
+      "AzureResourceGroupName": "PrivacyService-ISR",
+      "Location": "israelcentral",
+      "InstanceOf": "PrivacyOrchestratorResources",
+      "AzureSubscriptionId": "74462ed2-0778-4a34-9876-62daaea5350b",
+      "ServiceResources": [
+        {
+          "Name": "privacycosmosdb-isr",
+          "InstanceOf": "PrivacyCosmosDbDefinition",
+          "ArmParametersPath": "Parameters\\PrivacyCosmosDb\\PrivacyCosmosDb.ISR.Parameters.json"
+        },
+        {
+          "Name": "dsrqueue-isr",
+          "InstanceOf": "DSRQueueDefinition",
+          "ArmParametersPath": "Parameters\\DSRQueue\\DSRQueue.ISR.Parameters.json"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "$schema": "http://schema.express.azure.com/schemas/2015-01-01-alpha/RolloutSpec.json",
+  "contentVersion": "1.0.0.0",
+  "rolloutMetadata": {
+    "serviceModelPath": "ServiceModelResourcesSetup_GoLocal.json",
+    "name": "PrivacyOrchestratorResources",
+    "rolloutType": "Major",
+    "buildSource": {
+      "parameters": {
+        "versionFile": "buildver.txt"
+      }
+    },
+    "Notification": {
+      "Email": {
+        "To": "m365privacybuild@microsoft.com"
+      }
+    }
+  },
+  "orchestratedSteps": [
+    {
+      "name": "privacycosmosdb-isr",
+      "targetType": "ServiceResource",
+      "targetName": "privacycosmosdb-isr",
+      "actions": [
+        "Deploy"
+      ]
+    },
+    {
+      "name": "dsrqueue-isr",
+      "targetType": "ServiceResource",
+      "targetName": "dsrqueue-isr",
+      "actions": [
+        "Deploy"
+      ]
+    }
+  ]
+}

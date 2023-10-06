@@ -1,0 +1,49 @@
+{
+    "$schema": "http://schema.express.azure.com/schemas/2015-01-01-alpha/RolloutSpec.json",
+    "contentVersion": "1.0.0.0",
+  
+    "rolloutMetadata": {
+      "serviceModelPath": "ServiceModel_GraphContentSetup_GoLocal.json",
+      "name": "PrivacyGraphContentFnAppSetup-ISR",
+      "rolloutType": "Major",
+      "buildSource": {
+        "parameters": {
+          "versionFile": "buildver.txt"
+        }
+      },
+      "Notification": {
+        "Email": {
+          "To": "m365privacybuild@microsoft.com"
+        }
+      }
+    },
+    "orchestratedSteps": [
+      {
+        "name": "privacygraphcontentfnappsetup-isr",
+        "targetType": "ServiceResource",
+        "targetName": "privacygraphcontentfnappsetup-isr",
+        "actions": [ "Deploy" ]
+      },
+      {
+        "name": "privacygraphcontentfnapp-geneva-isr",
+        "targetType": "ServiceResource",
+        "targetName": "privacygraphcontentfnapp-geneva-isr",
+        "actions": [ "Deploy" ],
+        "dependsOn": [ "privacygraphcontentfnappsetup-isr" ]
+      },
+      {
+        "name": "privacyadfjobresourcesetup-isr",
+        "targetType": "ServiceResource",
+        "targetName": "privacyadfjobresourcesetup-isr",
+        "actions": [ "Deploy" ]
+      },
+      {
+        "name": "privacyadfjobsetup-isr",
+        "targetType": "ServiceResource",
+        "targetName": "privacyadfjobsetup-isr",
+        "actions": [ "Deploy" ],
+        "dependsOn": [ "privacyadfjobresourcesetup-isr", "privacygraphcontentfnappsetup-isr" ]
+      }
+    ]
+  }
+  

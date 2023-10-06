@@ -1,0 +1,92 @@
+{
+  "$schema": "http://schema.express.azure.com/schemas/2015-01-01-alpha/ServiceModel.json",
+  "contentVersion": "0.0.0.1",
+  "serviceMetadata": {
+    "serviceGroup": "PrivacyManagementService",
+    "environment": "ISR"
+  },
+  "serviceResourceGroupDefinitions": [
+    {
+      "name": "GraphContentFnAppSetup",
+      "serviceResourceDefinitions": [
+        {
+          "name": "PrivacyGraphContentFnAppSetup",
+          "composedOf": {
+            "arm": {
+              "templatePath": "Templates\\GraphContentFnAppSetup.Template.json"
+            }
+          }
+        },
+        {
+          "name": "GraphContentFnApp-Geneva",
+          "composedOf": {
+            "arm": {
+              "templatePath": "Templates\\GenevaAgent.Template.json"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "PrivacyAdfJobSetup",
+      "serviceResourceDefinitions": [
+        {
+          "name": "PrivacyAdfJobResourceSetup",
+          "composedOf": {
+            "arm": {
+              "templatePath": "Templates\\DataFactoryResourceSetup.Template.json"
+            }
+          }
+        },
+        {
+          "name": "PrivacyAdfJobSetup",
+          "composedOf": {
+            "arm": {
+              "templatePath": "Templates\\DataFactorySetup.Template.json"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "ServiceResourceGroups": [
+    {
+      "Name": "GraphContentFnAppSetup-ISR",
+      "AzureResourceGroupName": "PrivacyService-ISR",
+      "Location": "israelcentral",
+      "InstanceOf": "GraphContentFnAppSetup",
+      "AzureSubscriptionId": "be5f8796-6ee8-453d-81d2-8f2b43b728b7",
+      "ServiceResources": [
+        {
+          "Name": "privacygraphcontentfnappsetup-isr",
+          "InstanceOf": "PrivacyGraphContentFnAppSetup",
+          "ArmParametersPath": "Parameters\\PrivacyOrchestrators\\GraphContentFnAppSetup.ISR.Parameters.json"
+        },
+        {
+          "Name": "privacygraphcontentfnapp-geneva-isr",
+          "InstanceOf": "GraphContentFnApp-Geneva",
+          "ArmParametersPath": "Parameters\\PrivacyOrchestrators\\GraphContentFnAppGenevaAgent.ISR.Parameters.json"
+        }
+      ]
+    },
+    {
+      "Name": "PrivacyAdfJobSetup-ISR",
+      "AzureResourceGroupName": "PrivacyService-ISR",
+      "Location": "israelcentral",
+      "InstanceOf": "PrivacyAdfJobSetup",
+      "AzureSubscriptionId": "< Suggestion: be5f8796-6ee8-453d-81d2-8f2b43b728b7 >",
+      "ServiceResources": [
+        {
+          "Name": "privacyadfjobresourcesetup-isr",
+          "InstanceOf": "PrivacyAdfJobResourceSetup",
+          "ArmParametersPath": "Parameters\\GraphContentDataFactorySetup\\DataFactoryResourceSetup_ISR.Parameters.json"
+        },
+        {
+          "Name": "privacyadfjobsetup-isr",
+          "InstanceOf": "PrivacyAdfJobSetup",
+          "ArmParametersPath": "Parameters\\GraphContentDataFactorySetup\\DataFactorySetup_ISR.Parameters.json"
+        }
+      ]
+    }
+  ]
+}
