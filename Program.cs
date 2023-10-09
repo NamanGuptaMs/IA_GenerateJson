@@ -117,29 +117,43 @@
             var keywords = new string[] { "SWEDEN", "Sweden", "sweden", "swe", "SWE" };
             var replacements = new string[] { "ISRAEL", "Israel", "israel", "isr", "ISR" };
 
-            int count = jsonFile.Descendants().OfType<JObject>().Count();
+            // int count = jsonFile.Descendants().OfType<JObject>().Count();
 
             // Keep track of the entries that have already been modified
             var modifiedEntries = new HashSet<JObject>();
 
-            // Iterate over all entries in the JSON file
-            for (int i=0; i<count; i++)
-            {
-                var entry = jsonFile.Descendants().OfType<JObject>().ElementAt(i);      
+            // // Iterate over all entries in the JSON file
+            // for (int i=0; i<count; i++)
+            // {
+            //     var entry = jsonFile.Descendants().OfType<JObject>().ElementAt(i);      
                 
+            //     // Find the parent array of the existing entry and add the new entry to the array
+            //     var parent = entry.Parent;
+            //     // Check if the entry has already been modified
+            //     if (modifiedEntries.Contains(parent))
+            //     {
+            //         continue;
+            //     }
+
+            //     // targeting the key 'Name' for each entry to identify the entry for previous cloud.
+            //     var nameProperty = entry["Name"] != null? entry["Name"] : entry["name"];
+            //     // var nameProperty = entry["Name"];
+            
+            // Iterate over all entries in the JSON file
+            foreach (var entry in jsonFile.Descendants().OfType<JObject>())
+            {
                 // Find the parent array of the existing entry and add the new entry to the array
-                var parent = entry.Parent;
+                var parent = entry.Parent as JObject;
+                Console.WriteLine(entry);
                 // Check if the entry has already been modified
-                if (modifiedEntries.Contains(parent))
+                if (modifiedEntries.Contains(entry))
                 {
                     continue;
                 }
 
-                // targeting the key 'Name' for each entry to identify the entry for previous cloud.
-                var nameProperty = entry["Name"] != null? entry["Name"] : entry["name"];
-                // var nameProperty = entry["Name"];
-
-                if (nameProperty != null && nameProperty.ToString().Contains(cloud_swe))
+                // Check if the entry contains the cloud_swe substring in the "Name" or "name" property
+                var nameProperty = entry["Name"] ?? entry["name"];
+                if (nameProperty != null && nameProperty.ToString().ToUpper().Contains(cloud_swe))
                 {
                     // Clone the existing entry and replace all occurrences of the cloud_swe substring with the newcloud substring
                     var newEntry = (JObject)entry.DeepClone();
@@ -166,7 +180,8 @@
 
                     if (parent != null && parent.Type == JTokenType.Array)
                     {
-                        ((JArray)parent).Add(newEntry);
+                        modifiedEntries.Add(entry);
+                        parent.Add(newEntry);
                     }
                 }
             }
